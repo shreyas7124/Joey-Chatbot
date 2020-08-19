@@ -1,0 +1,35 @@
+#Import library for bot with data
+#Library: chatterbot
+#Class  : ChatBot
+from chatterbot import ChatBot
+
+#Import the algorithm (trainer)
+#Some algorithms: 
+#1. ListTrainer
+#2. UbuntuCorpusTrainer
+#3. TwitterTrainer
+#Library: chatterbot
+#Module : trainers
+#Class  : ChatterBotCorpusTrainer
+from chatterbot.trainers import ChatterBotCorpusTrainer
+
+#Define the bot's name and create an object
+bot = ChatBot('Chottu')
+#Define the trainer (set)
+bot.set_trainer(ChatterBotCorpusTrainer)
+
+#Import data
+#Train the algorithm on this data
+#Data: chatterbot/corpus/english
+#.yml files for training
+bot.train('chatterbot.corpus.english')
+
+#Code for interaction with ChatBot
+while(True):
+    message=input('You: ')
+    if(message=='Bye' or message=='bye'):
+        print('{}: Talking to you was a pleasure. Bye'.format(bot.name))
+        break
+    if(message!='Bye' or message!='bye'):
+        reply=bot.get_response(message)
+        print('{}: {}'.format(bot.name,reply))
